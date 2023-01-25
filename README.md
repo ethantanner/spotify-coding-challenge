@@ -1,5 +1,6 @@
 # Live Demo
-https://livedemo.com
+https://spotify.alliant.app/artist?artist=Ro&limit=10&page=1
+https://spotify.alliant.app/isrc?isrc=USWB11403680
 
 # Building yourself
 The following directions will instruct you how to build and run the application.
