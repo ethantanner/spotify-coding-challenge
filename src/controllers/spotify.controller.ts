@@ -50,7 +50,7 @@ export class Spotify {
     // Calculate the number of records to skip in the database
     const skip = (page - 1) * limit;
 
-    const tracks: Array<Track> = await AppDataSource.getRepository(Track).createQueryBuilder('track').innerJoinAndSelect('track.ArtistNameList', 'artist', 'artist.name like :name', { name: `%${artist}%` }).skip(skip).take(limit).getMany();
+    const tracks: Array<Track> = await AppDataSource.getRepository(Track).createQueryBuilder('track').innerJoinAndSelect('track.ArtistNameList', 'artist', 'LOWER(artist.name) like LOWER(:name)', { name: `%${artist}%` }).skip(skip).take(limit).getMany();
 
     // return tracks, empty array if no matches
     return res.send({
