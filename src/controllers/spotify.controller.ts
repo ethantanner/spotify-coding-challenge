@@ -203,12 +203,12 @@ export class Spotify {
    */
   private async makeSpotifyRequest(url: string, method: Method, data: any, params: any) {
     // checks to see if the token is missing or expired
-    if (!this.token || (Date.now() + 120) > this.expires) {
+    if (!this.token || (Date.now() + 120000) > this.expires) {
       console.log('Token missing or expired, fetching new token.')
 
       const tokenResponse = await this.getSpotifyToken();
       this.token = tokenResponse.access_token;
-      this.expires = Date.now() + tokenResponse.expires_in;
+      this.expires = Date.now() + (tokenResponse.expires_in * 1000);
     }
 
     // Make request with auth and return response body
